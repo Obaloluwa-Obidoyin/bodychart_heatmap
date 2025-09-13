@@ -1,99 +1,86 @@
-# BodyChart Heatmap 🧍🔥  
+# bodychart_heatmap
 
-A Flutter package that provides an **interactive SVG-based body heatmap chart** for fitness, medical, or tracking applications.  
-Easily highlight different body parts (neck, shoulders, chest, arms, abs, legs, butt, back) with **intensity levels** and display a color-coded tooltip legend.  
-
----
-
-## ✨ Features
-- 📊 Heatmap visualization of body parts
-- 🎨 Customizable colors (`baseColor`, `unselectedColor`)  
-- 🔢 Supports **3 intensity levels** per body part (low, medium, high)  
-- 🖼️ Vector-based (SVG) for crisp rendering on all screen sizes  
-- 🛠️ Tooltip legend with configurable text style  
-- 📱 Works out of the box with Flutter widgets  
+An interactive Flutter package for visualizing and highlighting body parts.  
+It provides two main widgets: **`BodyHeatmap`** (for gradient/intensity visualization) and **`BodyChart`** (for selected parts highlighting).
 
 ---
 
-## 🚀 Installation  
+## Installation
 
-## Add it to your package's pubspec.yaml file
-
-```dart
-  flutter pub add flutter_heatmap_calendar
-```
-
-or
+Add the dependency in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
   bodychart_heatmap: ^1.0.0
 ```
 
-Run
+or run:
 
-```sh
+```dart
+flutter pub add bodychart_heatmap
+```
+
+Then run:
+
+```dart
 flutter pub get
 ```
 
----
+## Usage
 
-# Parameters
----
+### BodyHeatmap
 
-## BodyChart
----
+```dart
+import 'package:bodychart_heatmap/bodychart_heatmap.dart';
 
-| Parameter         | Type             | Default            | Description |
-|-------------------|-----------------|--------------------|-------------|
-| `selectedParts`   | `Set<String>`   | **required**       | The set of body parts to highlight. |
-| `selectedColor`   | `Color`         | `Color(0xFFBCF246)`| Color used for highlighted/selected body parts. |
-| `unselectedColor` | `Color`         | `Color(0xFFCCCCCC)`| Color used for unselected body parts. |
-| `view`            | `BodyViewType`  | `BodyViewType.both`| Body view type: `front`, `back`, or `both`. |
-| `width`           | `double`        | `250`              | Custom width of the body chart widget. |
+BodyHeatmap(
+   selectedParts: {
+     "neck": 1,
+     "shoulder": 2,
+     "chest": 3,
+   },
+   baseColor: Colors.green,
+   unselectedColor: Colors.grey.shade300,
+   width: 300,
+   showToolTip: true,
+   toolTipTextStyle: TextStyle(fontSize: 14, color: Colors.black),
+ )
+```
 
-## BodyHeatmap
----
+### BodyHeatmap Parameters
 
+```markdown
 | Property            | Type              | Default                         | Description |
 |---------------------|-------------------|---------------------------------|-------------|
 | `selectedParts`     | `Map<String,int>` | **Required** | Body parts with intensity values (`1` = low, `2` = medium, `3` = high). |
 | `baseColor`         | `Color`           | **Required**                   | Main color used for highlighting. |
 | `unselectedColor`   | `Color`           | `Color(0xFFCCCCCC)`             | Color for unselected parts. |
-| `width`             | `double`          | `300`                           | Width of the SVG chart. |
+| `width`             | `double`          | `300`                           | Custom width of the body heatmap widget |
 | `showToolTip`       | `bool`            | `true`                          | Whether to show the legend/tooltip. |
 | `toolTipTextStyle`  | `TextStyle`       | `TextStyle(fontSize:14,color:Colors.black)` | Style for tooltip labels. |
+```
 
-# Example
-
-## BodyChart
+### BodyChart
 
 ```dart
+import 'package:bodychart_heatmap/bodychart_heatmap.dart';
+
 BodyChart(
   selectedParts: {"chest", "arm", "abs"},
   selectedColor: Colors.green,
   unselectedColor: Colors.grey.shade300,
-  view: BodyViewType.front,
-  width: 300,
+  view: BodyViewType.both,
+  width: 250,
 )
 ```
 
-## BodyHeapmap
-
-```dart
-BodyHeatmap(
-  selectedParts: {
-  "neck": 1,
-  "shoulder": 2,
-  "chest": 3,
-  },
-  baseColor: Colors.red,
-  unselectedColor: Colors.grey.shade300,
-  width: 300,
-  showToolTip: true,
-  toolTipTextStyle: TextStyle(fontSize: 14, color: Colors.black),
- )
-```
+| Parameter         | Type             | Default            | Description |
+|-------------------|-----------------|--------------------|-------------|
+| selectedParts     | Set<String>     | **required**       | The set of body parts to highlight. |
+| selectedColor     | Color           | Color(0xFFBCF246)  | Color used for highlighted/selected body parts. |
+| unselectedColor   | Color           | Color(0xFFCCCCCC)  | Color used for unselected body parts. |
+| view              | BodyViewType    | BodyViewType.both  | Body view type: front, back, or both. |
+| width             | double          | 250                | Custom width of the body chart widget. |
 
 ## License
 
@@ -120,4 +107,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
----
