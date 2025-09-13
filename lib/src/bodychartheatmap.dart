@@ -8,6 +8,7 @@ class BodyHeatmap extends StatelessWidget {
   final Color baseColor;
   final double width;
   final bool showToolTip;
+  final TextStyle toolTipTextStyle;
 
   /// [selectedParts] - [{"neck":0,"shoulder":0,"chest":0,"arm":0,"abs":0,"leg":0,
   /// "butt":0, "back":0}].
@@ -18,6 +19,7 @@ class BodyHeatmap extends StatelessWidget {
     this.unselectedColor = const Color(0xFFCCCCCC),
     this.width = 300,
     this.showToolTip = true,
+    this.toolTipTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
   });
 
   @override
@@ -33,7 +35,7 @@ class BodyHeatmap extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             spacing: 5,
             children: [
-              Text('Low', style: TextStyle(fontSize: 14, color: Colors.white)),
+              Text('Low', style: toolTipTextStyle),
               Row(
                 children: [
                   Container(
@@ -53,7 +55,7 @@ class BodyHeatmap extends StatelessWidget {
                   ),
                 ],
               ),
-              Text('High', style: TextStyle(fontSize: 14, color: Colors.white)),
+              Text('High', style: toolTipTextStyle),
             ],
           ),
       ],
@@ -89,7 +91,7 @@ class BodyHeatmap extends StatelessWidget {
     return ''' 
 //🫡
 <svg width="319" height="295" viewBox="0 0 319 295" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M69 0L63 4V14H60.5V19.5C61.3333 20 63 21.2 63 22V30L69 34H79L84.5 30V22L87.5 19.5V14H84.5V4L79 0H69Z" fill="#CCCCCC"/>
+<path d="M69 0L63 4V14H60.5V19.5C61.3333 20 63 21.2 63 22V30L69 34H79L84.5 30V22L87.5 19.5V14H84.5V4L79 0H69Z" fill="${defaultColor()}"/>
 <path d="M84.5 39.5V34L78 39.5V47H95.5L84.5 39.5Z" fill="${fillSvg("neck")}" fill-opacity="${fillOpacity("neck")}"/>
 <path d="M65 40.5V35L67 34L71 39.5L71.5 47H54L65 40.5Z" fill="${fillSvg("neck")}" fill-opacity="${fillOpacity("neck")}"/>
 <path d="M71 73.5V55L57.5 50L51.5 63L47.5 67.5L61.5 75L71 73.5Z" fill="${fillSvg("chest")}" fill-opacity="${fillOpacity("chest")}"/>

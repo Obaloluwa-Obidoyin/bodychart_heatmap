@@ -1,39 +1,123 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# BodyChart Heatmap 🧍🔥  
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A Flutter package that provides an **interactive SVG-based body heatmap chart** for fitness, medical, or tracking applications.  
+Easily highlight different body parts (neck, shoulders, chest, arms, abs, legs, butt, back) with **intensity levels** and display a color-coded tooltip legend.  
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## ✨ Features
+- 📊 Heatmap visualization of body parts
+- 🎨 Customizable colors (`baseColor`, `unselectedColor`)  
+- 🔢 Supports **3 intensity levels** per body part (low, medium, high)  
+- 🖼️ Vector-based (SVG) for crisp rendering on all screen sizes  
+- 🛠️ Tooltip legend with configurable text style  
+- 📱 Works out of the box with Flutter widgets  
 
-## Features
+---
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## 🚀 Installation  
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+## Add it to your package's pubspec.yaml file
 
 ```dart
-const like = 'sample';
+  flutter pub add flutter_heatmap_calendar
 ```
 
-## Additional information
+or
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```yaml
+dependencies:
+  bodychart_heatmap: ^1.0.0
+```
+
+Run
+
+```sh
+flutter pub get
+```
+
+---
+
+# Parameters
+---
+
+## BodyChart
+---
+
+| Parameter         | Type             | Default            | Description |
+|-------------------|-----------------|--------------------|-------------|
+| `selectedParts`   | `Set<String>`   | **required**       | The set of body parts to highlight. |
+| `selectedColor`   | `Color`         | `Color(0xFFBCF246)`| Color used for highlighted/selected body parts. |
+| `unselectedColor` | `Color`         | `Color(0xFFCCCCCC)`| Color used for unselected body parts. |
+| `view`            | `BodyViewType`  | `BodyViewType.both`| Body view type: `front`, `back`, or `both`. |
+| `width`           | `double`        | `250`              | Custom width of the body chart widget. |
+
+## BodyHeatmap
+---
+
+| Property            | Type              | Default                         | Description |
+|---------------------|-------------------|---------------------------------|-------------|
+| `selectedParts`     | `Map<String,int>` | **Required** | Body parts with intensity values (`1` = low, `2` = medium, `3` = high). |
+| `baseColor`         | `Color`           | **Required**                   | Main color used for highlighting. |
+| `unselectedColor`   | `Color`           | `Color(0xFFCCCCCC)`             | Color for unselected parts. |
+| `width`             | `double`          | `300`                           | Width of the SVG chart. |
+| `showToolTip`       | `bool`            | `true`                          | Whether to show the legend/tooltip. |
+| `toolTipTextStyle`  | `TextStyle`       | `TextStyle(fontSize:14,color:Colors.black)` | Style for tooltip labels. |
+
+# Example
+
+## BodyChart
+
+```dart
+BodyChart(
+  selectedParts: {"chest", "arm", "abs"},
+  selectedColor: Colors.green,
+  unselectedColor: Colors.grey.shade300,
+  view: BodyViewType.front,
+  width: 300,
+)
+```
+
+## BodyHeapmap
+
+```dart
+BodyHeatmap(
+  selectedParts: {
+  "neck": 1,
+  "shoulder": 2,
+  "chest": 3,
+  },
+  baseColor: Colors.red,
+  unselectedColor: Colors.grey.shade300,
+  width: 300,
+  showToolTip: true,
+  toolTipTextStyle: TextStyle(fontSize: 14, color: Colors.black),
+ )
+```
+
+## License
+
+```
+MIT License
+
+Copyright (c) 2025 Obaloluwa Obidoyin
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+---

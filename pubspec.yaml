@@ -1,8 +1,8 @@
 name: bodychart_heatmap
 description: "Body Chart and Heatmap."
 version: 1.0.0
-homepage: 
-author: obaobidoyin.xyz
+homepage: https://github.com/Obaloluwa-Obidoyin/bodychart_heatmap
+
 
 environment:
   sdk: ^3.7.2
