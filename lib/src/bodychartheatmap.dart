@@ -9,6 +9,7 @@ class BodyHeatmap extends StatelessWidget {
   final double width;
   final bool showToolTip;
   final TextStyle toolTipTextStyle;
+  final MainAxisAlignment toolTipAlignment;
 
   /// [selectedParts] - [{"neck":0,"shoulder":0,"chest":0,"arm":0,"abs":0,"leg":0,
   /// "butt":0, "back":0}].
@@ -20,43 +21,51 @@ class BodyHeatmap extends StatelessWidget {
     this.width = 300,
     this.showToolTip = true,
     this.toolTipTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
+    this.toolTipAlignment = MainAxisAlignment.center,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       spacing: 30,
-
       children: [
         SvgPicture.string(data(), width: width),
         if (showToolTip)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            spacing: 5,
-            children: [
-              Text('Low', style: toolTipTextStyle),
-              Row(
-                children: [
-                  Container(
-                    height: 15,
-                    width: 20,
-                    color: baseColor.withOpacity(0.33),
-                  ),
-                  Container(
-                    height: 15,
-                    width: 20,
-                    color: baseColor.withOpacity(0.66),
-                  ),
-                  Container(
-                    height: 15,
-                    width: 20,
-                    color: baseColor.withOpacity(1),
-                  ),
-                ],
-              ),
-              Text('High', style: toolTipTextStyle),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: toolTipAlignment,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 5,
+                  children: [
+                    Text('Low', style: toolTipTextStyle),
+                    Row(
+                      children: [
+                        Container(
+                          height: 15,
+                          width: 20,
+                          color: baseColor.withOpacity(0.33),
+                        ),
+                        Container(
+                          height: 15,
+                          width: 20,
+                          color: baseColor.withOpacity(0.66),
+                        ),
+                        Container(
+                          height: 15,
+                          width: 20,
+                          color: baseColor.withOpacity(1),
+                        ),
+                      ],
+                    ),
+                    Text('High', style: toolTipTextStyle),
+                  ],
+                ),
+              ],
+            ),
           ),
       ],
     );
@@ -76,6 +85,7 @@ class BodyHeatmap extends StatelessWidget {
     if (value == null) return 1.0;
     final level = value.clamp(1, 3);
     return switch (level) {
+0=>0.0,
       1 => 0.33,
       2 => 0.66,
       3 => 1.0,

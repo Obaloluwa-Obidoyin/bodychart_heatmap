@@ -9,7 +9,7 @@ class BodyChart extends StatelessWidget {
   final Color unselectedColor;
   final Color selectedColor;
   final double width;
-  final BodyViewType view;
+  final BodyViewType viewType;
 
   /// [front] - [{"neck","shoulder","chest","arm","abs","leg","full body"}].
   ///
@@ -22,7 +22,7 @@ class BodyChart extends StatelessWidget {
     required this.selectedParts,
     this.selectedColor = const Color(0xFFBCF246),
     this.unselectedColor = const Color(0xFFCCCCCC),
-    this.view = BodyViewType.both,
+    this.viewType = BodyViewType.both,
     this.width = 250,
   });
 
@@ -38,7 +38,7 @@ class BodyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = buildSvg(view);
+    final data = buildSvg(viewType);
     return SvgPicture.string(data, width: width);
   }
 

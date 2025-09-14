@@ -1,6 +1,6 @@
 # bodychart_heatmap
 
-An interactive Flutter package for visualizing and highlighting body parts.  
+An interactive Flutter package for visualizing and highlighting body parts for fitness, medical, or tracking applications.  
 It provides two main widgets: **`BodyHeatmap`** (for intensity visualization) and **`BodyChart`** (for selected parts highlighting).
 
 ---
@@ -49,7 +49,6 @@ BodyHeatmap(
 
 ### BodyHeatmap Parameters
 
-
 | Property            | Type              | Default                         | Description |
 |---------------------|-------------------|---------------------------------|-------------|
 | `selectedParts`     | `Map<String,int>` | **Required** | Body parts with intensity values (`1` = low, `2` = medium, `3` = high). |
@@ -58,7 +57,6 @@ BodyHeatmap(
 | `width`             | `double`          | `300`                           | Custom width of the body heatmap widget |
 | `showToolTip`       | `bool`            | `true`                          | Whether to show the legend/tooltip. |
 | `toolTipTextStyle`  | `TextStyle`       | `TextStyle(fontSize:14,color:Colors.black)` | Style for tooltip labels. |
-
 
 ---
 
