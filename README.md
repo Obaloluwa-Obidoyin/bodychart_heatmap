@@ -9,7 +9,7 @@ It provides two main widgets: **`BodyHeatmap`** (for intensity visualization) an
 ## Preview
 
 [bodychart](https://github.com/user-attachments/assets/3175267c-047c-4064-b385-27d9003d0498)
-[bodyheatmap]<img width="300" height="600" alt="Screenshot_1757880970" src="https://github.com/user-attachments/assets/bd82ac6b-4731-4d2c-96d8-9de5a18d96bd" />
+[bodyheatmap]<img width="1080" height="2400" alt="Screenshot_1757880970" src="https://github.com/user-attachments/assets/bd82ac6b-4731-4d2c-96d8-9de5a18d96bd" />
 
 ## Installation
 
