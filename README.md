@@ -1,11 +1,15 @@
 # bodychart_heatmap
 
-An interactive Flutter package for visualizing and highlighting body parts for fitness, medical, or tracking applications.  
+An interactive Flutter package for visualizing and highlighting body parts for fitness, medical, or tracking applications.
+
 It provides two main widgets: **`BodyHeatmap`** (for intensity visualization) and **`BodyChart`** (for selected parts highlighting).
 
 ---
 
 ## Preview
+
+[bodychart](https://github.com/user-attachments/assets/3175267c-047c-4064-b385-27d9003d0498)
+[bodyheatmap]<img width="1080" height="2400" alt="Screenshot_1757880970" src="https://github.com/user-attachments/assets/bd82ac6b-4731-4d2c-96d8-9de5a18d96bd" />
 
 ## Installation
 
@@ -42,7 +46,7 @@ BodyHeatmap(
     "arm": 2,
     "leg": 3,
     "butt": 1,
-    "shoulder": 0, // 0 = treated as unselected (grey)
+    "shoulder": 0, 
     "neck": 1,
     "abs": 1,
   },
@@ -76,7 +80,7 @@ BodyHeatmap(
 import 'package:bodychart_heatmap/bodychart_heatmap.dart';
 
 BodyChart(
-  selectedParts: {"chest", "arm", "abs"},
+  selectedParts: {"chest", "arm", "abs","back","butt"},
   selectedColor: Colors.green,
   unselectedColor: Colors.grey.shade300,
   viewType: BodyViewType.both,
@@ -88,11 +92,11 @@ BodyChart(
 
 | Parameter       | Type          | Default            | Description |
 |-----------------|--------------|--------------------|-------------|
-| selectedParts   | Set<String>  | **required**       | The set of body parts to highlight. <br> • **front**: `{"neck","shoulder","chest","arm","abs","leg","full body"}` <br> • **back**: `{"neck","back","shoulder","arm","butt","leg","full body"}` <br> • **both**: `{"neck","shoulder","chest","arm","abs","leg","butt","back","full body"}` |
-| selectedColor   | Color        | Color(0xFFBCF246)  | Color used for highlighted/selected body parts. |
-| unselectedColor | Color        | Color(0xFFCCCCCC)  | Color used for unselected body parts. |
-| viewType        | BodyViewType | BodyViewType.both  | Body view type: `front`, `back`, or `both`. |
-| width           | double       | 250                | Custom width of the body chart widget. |
+| `selectedParts`   | `Set<String>`  | **required**       | The set of body parts to highlight. <br> • **front**: `{"neck","shoulder","chest","arm","abs","leg","full body"}` <br> • **back**: `{"neck","back","shoulder","arm","butt","leg","full body"}` <br> • **both**: `{"neck","shoulder","chest","arm","abs","leg","butt","back","full body"}` |
+| `selectedColor`   | `Color`        | `Color(0xFFBCF246)`  | Color used for highlighted/selected body parts. |
+| `unselectedColor` | `Color`        | `Color(0xFFCCCCCC)`  | Color used for unselected body parts. |
+| `viewType`        | `BodyViewType` |`BodyViewType.both`  | Body view type: `front`, `back`, or `both`. |
+| `width`          | `double`       | `250`              | Custom width of the body chart widget. |
 
 ---
 
