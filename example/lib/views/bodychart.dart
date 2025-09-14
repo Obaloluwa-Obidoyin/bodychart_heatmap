@@ -9,7 +9,34 @@ class BodyChartExample extends StatefulWidget {
 }
 
 class _BodyChartExampleState extends State<BodyChartExample> {
-  Set<String> selectedPart = {};
+  Set<String> selectedFocusAreas = {};
+
+  final List<String> allFocusAreas = [
+    'full body',
+    'chest',
+    'arm',
+    'leg',
+    'back',
+    'butt',
+    'shoulder',
+    'abs',
+    'neck',
+  ];
+
+  void addFocusArea(String area) {
+    setState(() {
+      if (area == 'full body') {
+        selectedFocusAreas.length == allFocusAreas.length
+            ? selectedFocusAreas.clear()
+            : selectedFocusAreas = Set.from(allFocusAreas);
+      } else {
+        selectedFocusAreas.contains(area)
+            ? selectedFocusAreas.remove(area)
+            : selectedFocusAreas.add(area);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -33,11 +60,59 @@ class _BodyChartExampleState extends State<BodyChartExample> {
           // ),
           // SizedBox(height: 30),
           BodyChart(
-            selectedParts: selectedPart,
+            selectedParts: selectedFocusAreas,
             selectedColor: Colors.blueAccent,
             unselectedColor: Color(0xFFCCCCCC),
-            width: 300,
+            width: 350,
             viewType: BodyViewType.both,
+          ),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 35.0),
+            child: Center(
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 10,
+                runSpacing: 10,
+                children: [
+                  for (var part in [
+                    "Neck",
+                    "Shoulder",
+                    "Arm",
+                    "Chest",
+                    "Abs",
+                    "Leg",
+                    "Back",
+                    "Butt",
+                    "Full Body",
+                  ])
+                    ChoiceChip(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        side: BorderSide(
+                          color:
+                              selectedFocusAreas.contains(part.toLowerCase())
+                                  ? Colors.lime[400]!
+                                  : Colors.transparent,
+                        ),
+                      ),
+                      backgroundColor: Color(0xffcccccc),
+                      showCheckmark: false,
+                      label: Text(
+                        part,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                        ),
+                      ),
+                      selected: selectedFocusAreas.contains(part.toLowerCase()),
+                      onSelected: (_) => addFocusArea(part.toLowerCase()),
+                      selectedColor: Colors.blueAccent,
+                    ),
+                ],
+              ),
+            ),
           ),
         ],
       ),

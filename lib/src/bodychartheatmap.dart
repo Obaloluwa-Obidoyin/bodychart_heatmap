@@ -73,7 +73,7 @@ class BodyHeatmap extends StatelessWidget {
 
   String fillSvg(String part) {
     final value = selectedParts[part];
-    if (value == null) {
+    if (value == null || value == 0) {
       return unselectedColor.toHex(leadingHashSign: true);
     }
 
@@ -82,10 +82,9 @@ class BodyHeatmap extends StatelessWidget {
 
   double fillOpacity(String part) {
     final value = selectedParts[part];
-    if (value == null) return 1.0;
+    if (value == null || value == 0) return 1.0;
     final level = value.clamp(1, 3);
     return switch (level) {
-0=>0.0,
       1 => 0.33,
       2 => 0.66,
       3 => 1.0,
