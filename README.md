@@ -1,4 +1,4 @@
-# bodychart_heatmap
+## bodychart_heatmap
 
 An interactive Flutter package for visualizing and highlighting body parts for fitness, medical, or tracking applications.
 
@@ -99,4 +99,3 @@ BodyChart(
 | `width`          | `double`       | `250`              | Custom width of the body chart widget. |
 
 ---
-

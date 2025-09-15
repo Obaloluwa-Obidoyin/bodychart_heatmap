@@ -1,7 +1,14 @@
 name: bodychart_heatmap
-description: "Body Chart and Heatmap."
-version: 1.0.0
+description: "A Flutter package for visualizing and highlighting human body parts. Supports heatmap intensity levels and body charts for fitness, medical, and anatomy apps."
+version: 1.0.1
 homepage: https://github.com/Obaloluwa-Obidoyin/bodychart_heatmap
+topics:
+  - body-chart
+  - heatmap
+  - fitness
+  - workout
+  - medical
+  - anatomy
 
 
 environment:
