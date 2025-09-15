@@ -7,9 +7,9 @@ It provides two main widgets: **`BodyHeatmap`** (for intensity visualization) an
 ---
 
 ## Preview
+![bodyheatmap](https://github.com/user-attachments/assets/e0bfdad0-0ab6-4fb7-abc3-e71b01f3c4f7)
+![bodychart](https://github.com/user-attachments/assets/26fd5eef-d5c9-4b8d-a573-5c253ab5594d)
 
-[bodychart](https://github.com/user-attachments/assets/3175267c-047c-4064-b385-27d9003d0498)
-[bodyheatmap]<img width="1080" height="2400" alt="Screenshot_1757880970" src="https://github.com/user-attachments/assets/bd82ac6b-4731-4d2c-96d8-9de5a18d96bd" />
 
 ## Installation
 
@@ -100,28 +100,3 @@ BodyChart(
 
 ---
 
-## License
-
-```
-MIT License
-
-Copyright (c) 2025 Obaloluwa Obidoyin
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
