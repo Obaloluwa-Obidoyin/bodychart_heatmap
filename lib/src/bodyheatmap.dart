@@ -7,70 +7,54 @@ class BodyHeatmap extends StatelessWidget {
   final Color unselectedColor;
   final Color baseColor;
   final double width;
-  final bool showToolTip;
-  final TextStyle toolTipTextStyle;
-  final MainAxisAlignment toolTipAlignment;
+  final bool showLegend;
+  final TextStyle legendTextStyle;
+  final MainAxisAlignment legendAlignment;
+  final int intensityLevels;
 
-  /// [selectedParts] - [{"neck":0,"shoulder":0,"chest":0,"arm":0,"abs":0,"leg":0,
-  /// "butt":0, "back":0}].
+  /// Usage Example:
+  /// ```dart
+  /// BodyHeatmap(
+  ///      selectedParts: {
+  ///          "chest": 5,
+  ///          "back": 4,
+  ///      "arm": 10,
+  ///          "leg": 5,
+  ///           "butt": 10,
+  ///           "shoulder": 0,
+  ///           "neck": 2,
+  ///           "abs": 8,
+  ///         },
+  ///         baseColor: Colors.blueAccent,
+  ///         unselectedColor: Color(0xFFCCCCCC),
+  ///         width: 350,
+  ///         showLegend: true,
+  ///         legendTextStyle: TextStyle(fontSize: 14, color: Colors.black),
+  ///         legendAlignment: MainAxisAlignment.end,
+  ///         intensityLevels: 3,
+  ///       ),
+  /// ```
+
   const BodyHeatmap({
     super.key,
     required this.selectedParts,
     required this.baseColor,
     this.unselectedColor = const Color(0xFFCCCCCC),
     this.width = 300,
-    this.showToolTip = true,
-    this.toolTipTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
-    this.toolTipAlignment = MainAxisAlignment.center,
+    this.showLegend = true,
+    this.legendTextStyle = const TextStyle(fontSize: 14, color: Colors.black),
+    this.legendAlignment = MainAxisAlignment.center,
+    this.intensityLevels = 3,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 30,
-      children: [
-        SvgPicture.string(data(), width: width),
-        if (showToolTip)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisAlignment: toolTipAlignment,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  spacing: 5,
-                  children: [
-                    Text('Low', style: toolTipTextStyle),
-                    Row(
-                      children: [
-                        Container(
-                          height: 15,
-                          width: 20,
-                          color: baseColor.withOpacity(0.33),
-                        ),
-                        Container(
-                          height: 15,
-                          width: 20,
-                          color: baseColor.withOpacity(0.66),
-                        ),
-                        Container(
-                          height: 15,
-                          width: 20,
-                          color: baseColor.withOpacity(1),
-                        ),
-                      ],
-                    ),
-                    Text('High', style: toolTipTextStyle),
-                  ],
-                ),
-              ],
-            ),
-          ),
-      ],
-    );
+  //Default color
+  String defaultColor() {
+    return unselectedColor.toHex(leadingHashSign: true);
   }
 
+  //
+  //
+  // Color that fills the chart
   String fillSvg(String part) {
     final value = selectedParts[part];
     if (value == null || value == 0) {
@@ -80,20 +64,75 @@ class BodyHeatmap extends StatelessWidget {
     return baseColor.toHex(leadingHashSign: true);
   }
 
+  //
+  //
+  // This fills & controls the intensity!.
   double fillOpacity(String part) {
     final value = selectedParts[part];
     if (value == null || value == 0) return 1.0;
-    final level = value.clamp(1, 3);
-    return switch (level) {
-      1 => 0.33,
-      2 => 0.66,
-      3 => 1.0,
-      _ => 1.0,
-    };
+
+    final allValues = selectedParts.values.where((v) => v > 0);
+    if (allValues.isEmpty) return 1.0;
+
+    final min = allValues.reduce((a, b) => a < b ? a : b);
+    final max = allValues.reduce((a, b) => a > b ? a : b);
+    final normalized = max == min ? 1.0 : (value - min) / (max - min);
+
+    final steps = List.generate(
+      intensityLevels,
+      (i) => (i + 1) / intensityLevels,
+    );
+
+    final index = (normalized * (steps.length - 1)).round();
+    return steps[index];
   }
 
-  String defaultColor() {
-    return unselectedColor.toHex(leadingHashSign: true);
+  //
+  //
+  //Legend Widget
+  List<Widget> buildLegend() {
+    const totalWidth = 80.0;
+    const height = 15.0;
+
+    final boxWidth = totalWidth / intensityLevels;
+
+    return List.generate(intensityLevels, (i) {
+      final opacity = (i + 1) / intensityLevels;
+      return Container(
+        height: height,
+        width: boxWidth,
+        color: baseColor.withOpacity(opacity),
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      spacing: 30,
+      children: [
+        SvgPicture.string(data(), width: width),
+        if (showLegend)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              mainAxisAlignment: legendAlignment,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  spacing: 5,
+                  children: [
+                    Text('Low', style: legendTextStyle),
+                    Row(children: buildLegend()),
+                    Text('High', style: legendTextStyle),
+                  ],
+                ),
+              ],
+            ),
+          ),
+      ],
+    );
   }
 
   String data() {

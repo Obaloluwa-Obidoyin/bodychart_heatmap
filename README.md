@@ -4,12 +4,10 @@ An interactive Flutter package for visualizing and highlighting body parts for f
 
 It provides two main widgets: **`BodyHeatmap`** (for intensity visualization) and **`BodyChart`** (for selected parts highlighting).
 
----
-
 ## Preview
+
 ![bodyheatmap](https://github.com/user-attachments/assets/e0bfdad0-0ab6-4fb7-abc3-e71b01f3c4f7)
 ![bodychart](https://github.com/user-attachments/assets/26fd5eef-d5c9-4b8d-a573-5c253ab5594d)
-
 
 ## Installation
 
@@ -41,38 +39,38 @@ import 'package:bodychart_heatmap/bodychart_heatmap.dart';
 
 BodyHeatmap(
   selectedParts: {
-    "chest": 1,
-    "back": 3,
-    "arm": 2,
-    "leg": 3,
-    "butt": 1,
-    "shoulder": 0, 
-    "neck": 1,
-    "abs": 1,
+    "chest": 5,
+    "back": 4,
+    "arm": 10,
+    "leg": 5,
+    "butt": 10,
+    "shoulder": 0,
+    "neck": 2,
+    "abs": 8,
   },
   baseColor: Colors.blueAccent,
   unselectedColor: const Color(0xFFCCCCCC),
   width: 350,
-  showToolTip: true,
-  toolTipTextStyle: const TextStyle(fontSize: 14, color: Colors.black),
-  toolTipAlignment: MainAxisAlignment.end,
+  showLegend: true,
+  legendTextStyle: const TextStyle(fontSize: 14, color: Colors.black),
+  legendAlignment: MainAxisAlignment.end,
+  intensityLevels: 3,
 )
 
 ```
 
 ### BodyHeatmap Parameters
 
-| Property            | Type                | Default                           | Description |
-|---------------------|---------------------|-----------------------------------|-------------|
-| `selectedParts`     | `Map<String,int>`   | **Required**                      | Body parts with intensity values:<br/>`0` = unselected (uses `unselectedColor`),<br/>`1` = low, `2` = medium, `3` = high. |
-| `baseColor`         | `Color`             | **Required**                      | Main color used for highlighting. |
-| `unselectedColor`   | `Color`             | `Color(0xFFCCCCCC)`               | Color for unselected/0-value parts. |
-| `width`             | `double`            | `300`                             | Custom width of the heatmap widget. |
-| `showToolTip`       | `bool`              | `true`                            | Whether to show the legend/tooltip. |
-| `toolTipTextStyle`  | `TextStyle`         | `TextStyle(fontSize:14,color:Colors.black)` | Style for tooltip labels. |
-| `toolTipAlignment`  | `MainAxisAlignment` | `MainAxisAlignment.center`        | Alignment of the tooltip row (`.start`, `.center`, `.end`). |
-
----
+| Property          | Type                | Default                           | Description |
+|-------------------|---------------------|-----------------------------------|-------------|
+| `selectedParts`   | `Map<String,int>`   | **Required**                      | Body parts with intensity values. `0` = unselected (uses `unselectedColor`). Higher values map across the `intensityLevels`. |
+| `baseColor`       | `Color`             | **Required**                      | Main color used for highlighting. |
+| `unselectedColor` | `Color`             | `Color(0xFFCCCCCC)`               | Color for unselected / 0-value parts. |
+| `width`           | `double`            | `300`                             | Custom width of the heatmap widget. |
+| `showLegend`      | `bool`              | `true`                            | Whether to display the legend under the heatmap. |
+| `legendTextStyle` | `TextStyle`         | `TextStyle(fontSize:14,color:Colors.black)` | Style for legend labels. |
+| `legendAlignment` | `MainAxisAlignment` | `MainAxisAlignment.center`        | Alignment of the legend row (`.start`, `.center`, `.end`). |
+| `intensityLevels` | `int`               | `4`                               | Number of intensity levels (e.g. `3` for Low/Medium/High, `4` for GitHub-style). |
 
 ### BodyChart
 
@@ -97,5 +95,3 @@ BodyChart(
 | `unselectedColor` | `Color`        | `Color(0xFFCCCCCC)`  | Color used for unselected body parts. |
 | `viewType`        | `BodyViewType` |`BodyViewType.both`  | Body view type: `front`, `back`, or `both`. |
 | `width`          | `double`       | `250`              | Custom width of the body chart widget. |
-
----

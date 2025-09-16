@@ -11,13 +11,40 @@ class BodyChart extends StatelessWidget {
   final double width;
   final BodyViewType viewType;
 
-  /// [front] - [{"neck","shoulder","chest","arm","abs","leg","full body"}].
+  /// Usage Example:
   ///
-  /// [back] - [{"neck","back","shoulder","arm","butt","leg","full body"}].
-  ///
-  /// [both] - [{"neck","shoulder","chest","arm","abs","leg",
-  /// "butt", "back", "full body"}].
-  ///
+  /// [Both]
+  /// ```dart
+  /// BodyChart(
+  /// selectedParts: {"neck","shoulder","chest","arm","abs","leg",
+  /// "butt", "back", "full body"},
+  /// selectedColor: Colors.blueAccent,
+  /// unselectedColor: Color(0xFFCCCCCC),
+  /// width: 350,
+  /// viewType: BodyViewType.both,
+  ///  ),
+  /// ```
+  /// [front]
+  /// ```dart
+  /// BodyChart(
+  ///   selectedParts: {"neck","shoulder","chest","arm","abs","leg","full body"},
+  ///   selectedColor: Colors.blueAccent,
+  ///   unselectedColor: Color(0xFFCCCCCC),
+  ///   width: 170,
+  ///   viewType: BodyViewType.front,
+  /// ),
+  /// ```
+  /// [back]
+  /// ```dart
+  /// BodyChart(
+  ///   selectedParts: {"neck","back","shoulder","arm","butt","leg","full body"},
+  ///   selectedColor: Colors.blueAccent,
+  ///   unselectedColor: Color(0xFFCCCCCC),
+  ///   width: 170,
+  ///   viewType: BodyViewType.back,
+  /// ),
+  /// ```
+
   const BodyChart({
     super.key,
     required this.selectedParts,
@@ -27,12 +54,18 @@ class BodyChart extends StatelessWidget {
     this.width = 250,
   });
 
+  //
+  //
+  //This fills the chart color
   String fillSvg(String part) {
     return selectedParts.contains(part) || selectedParts.contains("full body")
         ? selectedColor.toHex(leadingHashSign: true)
         : unselectedColor.toHex(leadingHashSign: true);
   }
 
+  //
+  //
+  // Default color
   String defaultColor() {
     return unselectedColor.toHex(leadingHashSign: true);
   }
@@ -43,6 +76,7 @@ class BodyChart extends StatelessWidget {
     return SvgPicture.string(data, width: width);
   }
 
+  //Front view only chart!
   String frontSvg() {
     return '''
 <svg width="149" height="292" viewBox="0 0 149 292" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,7 +151,7 @@ fill="${fillSvg("arm")}"/>
     ''';
   }
 
-  ///back chart
+  //Back view only chart!
   String backSvg() {
     return '''
 <svg width="151" height="295" viewBox="0 0 151 295" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,6 +215,7 @@ fill="${fillSvg("back")}"/>
 ''';
   }
 
+  //F+B chart!
   String bothSvg() {
     return '''
 //🫡
@@ -296,6 +331,7 @@ fill="${fillSvg("arm")}"/>
     ''';
   }
 
+  //Control your body view type👍
   String buildSvg(BodyViewType view) {
     switch (view) {
       case BodyViewType.front:

@@ -20,11 +20,10 @@ packages:
   bodychart_heatmap:
     dependency: "direct main"
     description:
-      name: bodychart_heatmap
-      sha256: "428413178c99c3e846e9372ae11643443744648fcb34a4ab35857af975d3f6fc"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
+      path: "C:\\Users\\HP\\Desktop\\folder\\package\\bodychart_heatmap"
+      relative: false
+    source: path
+    version: "1.0.1"
   boolean_selector:
     dependency: transitive
     description:
