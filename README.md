@@ -70,7 +70,7 @@ BodyHeatmap(
 | `showLegend`      | `bool`              | `true`                            | Whether to display the legend under the heatmap. |
 | `legendTextStyle` | `TextStyle`         | `TextStyle(fontSize:14,color:Colors.black)` | Style for legend labels. |
 | `legendAlignment` | `MainAxisAlignment` | `MainAxisAlignment.center`        | Alignment of the legend row (`.start`, `.center`, `.end`). |
-| `intensityLevels` | `int`               | `4`                               | Number of intensity levels (e.g. `3` for Low/Medium/High, `4` for GitHub-style). |
+| `intensityLevels` | `int`               | `3`                               | Number of intensity levels (e.g. `3` for Low/Medium/High, `4` for GitHub-style). |
 
 ### BodyChart
 
